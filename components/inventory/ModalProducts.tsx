@@ -4,7 +4,7 @@ import {ModalProductsProps} from "@/types/inventory";
 import { formatDate } from "@/lib/utils/date";
 import { createProduct, updateProduct } from "@/actions/products";
 
-export default function ModalProducts({product, mode, onClick, onClick1, brands, categories, subCategories}: ModalProductsProps) {
+export default function ModalProducts({product, mode, onClick, onClick1, brands, categories, subCategories = []}: ModalProductsProps) {
     const isEdit = mode === "edit";
     const router = useRouter();
 
@@ -23,8 +23,8 @@ export default function ModalProducts({product, mode, onClick, onClick1, brands,
         min_stock: product?.min_stock ?? 0,
         image_url: product?.image_url ?? "",
         is_active: product?.is_active ?? true,
-        category_name: product?.subcategories?.categories.name ?? "",
-        subCategory_name: product?.subcategories.name ?? "",
+        category_name: product?.subcategories?.categories?.name ?? "",
+        subCategory_name: product?.subcategories?.name ?? "",
         created_at: product?.created_at ?? "",
         updated_at: product?.updated_at ?? "",
     }));
@@ -64,6 +64,10 @@ export default function ModalProducts({product, mode, onClick, onClick1, brands,
 
         try {
             if (isEdit) {
+                if (!product) {
+                    throw new Error("No se encontró el producto para editar");
+                }
+
                 console.log("Editando prod");
                 console.log(formData, "hola")
                 await updateProduct({
@@ -256,7 +260,7 @@ export default function ModalProducts({product, mode, onClick, onClick1, brands,
 
                         <select
                             name="subcategory_id"
-                            value={formData.category_name}
+                            value={formData.subcategory_id}
                             onChange={handleChange}
                             className="w-full border border-outline-variant rounded-lg px-4 py-3 bg-transparent"
                         >
