@@ -1,9 +1,9 @@
 "use client";
 import {useState} from "react";
 import ModalProduct from "@/components/inventory/ModalProducts";
-import { DataProductModalProps } from "@/types/inventory";
+import {DataProductModal} from "@/types/inventory";
 
-export default function ButtonAddProduct({ brands, categories, subCategories }: DataProductModalProps) {
+export default function ButtonAddProduct({ brands, categories, subCategories }: DataProductModal) {
     const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
     
     return (

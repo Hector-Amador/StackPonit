@@ -45,6 +45,12 @@ export interface DataProductModalProps {
     product: Product;
 }
 
+export interface DataProductModal {
+    brands: Brand[];
+    categories: Category[];
+    subCategories: Subcategory[];
+}
+
 export interface ModalProductsProps {
     mode: "create" | "edit";
     onClick: () => void;
