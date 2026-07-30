@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
             },
             {
                 protocol: "https",
-                hostname: "https://stackpoint.netlify.app/",
+                hostname: "stackpoint.netlify.app/",
             }
         ],
     },
